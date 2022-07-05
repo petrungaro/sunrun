@@ -1,4 +1,6 @@
-const Results = () => {
+const Results = (props) => {
+
+    const {sunInformation, sunOption} = props
 
 }
 
