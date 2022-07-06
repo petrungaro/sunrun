@@ -2,7 +2,7 @@ import Location from "./Location";
 
 const Form = (props) => {
 
-    const { getLong, getLat, getDate, date, sunOption, updateSunOption, todaysDate, getSubmit} = props
+    const { getLong, getLat, getDate, date, sunOption, updateSunOption, todaysDate, getSubmit, getRun, run} = props
 
     const handleChange = (e) => {
 
@@ -41,6 +41,11 @@ const Form = (props) => {
 
     }
 
+    const handleRunTime = (e)=>{
+      console.log("Run time", e);
+      getRun(e.target.value);
+    }
+
     return (
     
     <>
@@ -57,12 +62,19 @@ const Form = (props) => {
               <input type="radio" id="sunrise" name="sunOption" value="true"/>
               <label htmlFor="sunrise">Sunrise</label>
 
-              <input type="radio" id="sunset" name="sunOption" value="false"/>
+              <input type="radio" id="sunset" name="sunOption" value=""/>
               <label htmlFor="sunset">Sunset</label>
-
-              <button>Get a run time</button>
           </div>
-
+              {
+                !sunOption?
+                <>
+                <label htmlFor="runTime">Length of Run</label>
+                <input onChange={handleRunTime} type="number" name="runTime" min="0"  id="runTime" value={run} step="5"/>
+                </>
+                :null
+              }
+              <button>Get a run time</button>
+        
         </form>
 
     </>

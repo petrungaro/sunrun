@@ -21,6 +21,7 @@ const [selectedDate, setSelectedDate] = useState("")
 const [isSunrise, setIsSunrise] = useState(true)
 const [todaysDate, setTodaysDate] = useState("");
 // const [isSubmit, setIsSubmit]=useState(true);
+const [runTime, setRunTime]= useState(0);
 
 
 // functions
@@ -49,6 +50,11 @@ const getSunOption = (option) => {
 
 }
 
+const getRunTime=(minutes)=>{
+  setRunTime(minutes);
+  console.log("Users run is", minutes);
+}
+
 
 
 // useEffect(() => {
@@ -61,6 +67,7 @@ const getSunOption = (option) => {
       lat: userLatitude,
       lng: userLongitude,
       date: selectedDate,
+      formatted:0
     }
   })
   .then(jsonData => {
@@ -87,8 +94,8 @@ useEffect(()=>{
 
   return (
     <div className="App">
-      <Form getLong={getLongitude} getLat={getLatitude} getDate={getDate} date={selectedDate} sunOption={isSunrise} updateSunOption={getSunOption} todaysDate={todaysDate} getSubmit={getFormSubmit}/>
-      <Results sunInformation={sunData} sunOption={isSunrise} />
+      <Form getLong={getLongitude} getLat={getLatitude} getDate={getDate} date={selectedDate} sunOption={isSunrise} updateSunOption={getSunOption} todaysDate={todaysDate} getSubmit={getFormSubmit} getRun = {getRunTime} run={runTime}/>
+      <Results sunInformation={sunData} sunOption={isSunrise} userRunTime={runTime} />
     </div>
   );
 }
