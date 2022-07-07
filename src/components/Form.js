@@ -50,12 +50,14 @@ const Form = (props) => {
     
     <>
         <p>Date</p>
+        <p>location</p>
+        <button onClick={getLocation}>Get my location</button>
         <form onSubmit={handleSubmit}>
           <label htmlFor="date">Select date:</label>
           <input min ={todaysDate} type="date" id="date" name="date" value={date} onChange={handleChange}/>
 
-          <p>location</p>
-          <button onClick={getLocation}>Get my location</button>
+          
+          
 
           <p>Sunrise or Sunset?</p>
           <div onChange={handleSunChange} value={sunOption}>
