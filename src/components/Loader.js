@@ -34,11 +34,8 @@ function Loader() {
                     <div className="completed"></div>
                 )}
             </>
-        ) : (
-            <>
-                null
-            </>
-            )}
+        ) :null
+            }
         </>
     );
 }
