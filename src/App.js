@@ -94,15 +94,9 @@ useEffect(()=>{
 
   return (
     <div className="App">
-<<<<<<< HEAD
-      <Header />
       <Form getLong={getLongitude} getLat={getLatitude} getDate={getDate} date={selectedDate} sunOption={isSunrise} updateSunOption={getSunOption}/>
       <Results sunInformation={sunData} sunOption={isSunrise} />
       <Footer />
-=======
-      <Form getLong={getLongitude} getLat={getLatitude} getDate={getDate} date={selectedDate} sunOption={isSunrise} updateSunOption={getSunOption} todaysDate={todaysDate} getSubmit={getFormSubmit} getRun = {getRunTime} run={runTime}/>
-      <Results sunInformation={sunData} sunOption={isSunrise} userRunTime={runTime} />
->>>>>>> bcb4f554a725c1c9d17ef1fd2da57fed3606c1db
     </div>
   );
 }
