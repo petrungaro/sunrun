@@ -70,6 +70,7 @@ useEffect(() => {
 
   return (
     <div className="App">
+      <Loader />
       <Form getLong={getLongitude} getLat={getLatitude} getDate={getDate} date={selectedDate} sunOption={isSunrise} updateSunOption={getSunOption}/>
       <Results sunInformation={sunData} sunOption={isSunrise} />
     </div>
