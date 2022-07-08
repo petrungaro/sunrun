@@ -2,7 +2,7 @@ import Location from "./Location";
 
 const Form = (props) => {
 
-    const { getLong, getLat, getDate, date, sunOption, updateSunOption} = props
+    const { getLong, getLat, getDate, date, sunOption, updateSunOption, todaysDate, getSubmit, getRun, run} = props
 
     const handleChange = (e) => {
 
@@ -34,23 +34,49 @@ const Form = (props) => {
       console.log('user declined to share location')
     }
 
+    const handleSubmit = (e)=>{
+      e.preventDefault();
+      console.log('Form submit',e);
+      getSubmit();
+
+    }
+
+    const handleRunTime = (e)=>{
+      console.log("Run time", e);
+      getRun(e.target.value);
+    }
+
     return (
     
     <>
         <p>Date</p>
-        <label htmlFor="date">Select date:</label>
-        <input type="date" id="date" name="date" value={date} onChange={handleChange}/>
-
         <p>location</p>
         <button onClick={getLocation}>Get my location</button>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="date">Select date:</label>
+          <input min ={todaysDate} type="date" id="date" name="date" value={date} onChange={handleChange}/>
 
-        <p>Sunrise or Sunset?</p>
-        <form onChange={handleSunChange} value={sunOption}>
-            <input type="radio" id="sunrise" name="sunOption" value="true"/>
-            <label htmlFor="sunrise">Sunrise</label>
+          
+          
 
-            <input type="radio" id="sunset" name="sunOption" value="false"/>
-            <label htmlFor="sunset">Sunset</label>
+          <p>Sunrise or Sunset?</p>
+          <div onChange={handleSunChange} value={sunOption}>
+              <input type="radio" id="sunrise" name="sunOption" value="true"/>
+              <label htmlFor="sunrise">Sunrise</label>
+
+              <input type="radio" id="sunset" name="sunOption" value=""/>
+              <label htmlFor="sunset">Sunset</label>
+          </div>
+              {
+                !sunOption?
+                <>
+                <label htmlFor="runTime">Length of Run</label>
+                <input onChange={handleRunTime} type="number" name="runTime" min="0"  id="runTime" value={run} step="5"/>
+                </>
+                :null
+              }
+              <button>Get a run time</button>
+        
         </form>
 
     </>

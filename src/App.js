@@ -19,6 +19,9 @@ const [userLatitude, setUserLatitude] = useState("");
 const [sunData, setSunData] = useState({})
 const [selectedDate, setSelectedDate] = useState("")
 const [isSunrise, setIsSunrise] = useState(true)
+const [todaysDate, setTodaysDate] = useState("");
+// const [isSubmit, setIsSubmit]=useState(true);
+const [runTime, setRunTime]= useState(0);
 
 
 // functions
@@ -47,7 +50,15 @@ const getSunOption = (option) => {
 
 }
 
-useEffect(() => {
+const getRunTime=(minutes)=>{
+  setRunTime(minutes);
+  console.log("Users run is", minutes);
+}
+
+
+
+// useEffect(() => {
+  const getFormSubmit = () =>{
   axios({
     url: `https://api.sunrise-sunset.org/json`,
     method: `GET`,
@@ -56,6 +67,7 @@ useEffect(() => {
       lat: userLatitude,
       lng: userLongitude,
       date: selectedDate,
+      formatted:0
     }
   })
   .then(jsonData => {
@@ -64,16 +76,33 @@ useEffect(() => {
     setSunData(jsonData.data.results);
     
   })
-}, [] );
+  }
+// }, [isSubmit] );
 
+useEffect(()=>{
+  let date = new Date();
+  // Format date to YYYY-MM-DD
+  let formatDate = date.toLocaleDateString();
+  setTodaysDate(formatDate);
+
+},[])
+
+// const getFormSubmit = ()=>{
+//   setIsSubmit(!isSubmit)
+// }
 
 
   return (
     <div className="App">
+<<<<<<< HEAD
       <Header />
       <Form getLong={getLongitude} getLat={getLatitude} getDate={getDate} date={selectedDate} sunOption={isSunrise} updateSunOption={getSunOption}/>
       <Results sunInformation={sunData} sunOption={isSunrise} />
       <Footer />
+=======
+      <Form getLong={getLongitude} getLat={getLatitude} getDate={getDate} date={selectedDate} sunOption={isSunrise} updateSunOption={getSunOption} todaysDate={todaysDate} getSubmit={getFormSubmit} getRun = {getRunTime} run={runTime}/>
+      <Results sunInformation={sunData} sunOption={isSunrise} userRunTime={runTime} />
+>>>>>>> bcb4f554a725c1c9d17ef1fd2da57fed3606c1db
     </div>
   );
 }
