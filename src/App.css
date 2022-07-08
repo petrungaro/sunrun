@@ -5,3 +5,12 @@ html { box-sizing: border-box;}
 *, *:before, *:after {box-sizing: inherit}
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
+
+html {
+    background-image: linear-gradient(to bottom, #b8e070, #c6e676, #d3eb7c, #e1f182, #eef689, #f5ec81, #fae17b, #ffd777, #fbba6a, #f39d63, #e78161, #d66761);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%
+}
