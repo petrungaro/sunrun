@@ -12,5 +12,23 @@ html {
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
-    height: 100%
+    height: 100%;
+    top: 0;
+}
+
+.watch {
+    display: flex;
+}
+
+.vectorImage {
+    display: block;
+    z-index: -1;
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
 }

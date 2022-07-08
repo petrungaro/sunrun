@@ -94,8 +94,14 @@ useEffect(()=>{
 
   return (
     <div className="App">
+      <Loader />
+      <Header />
+      
+      <h1>Sun Run</h1>
+      
       <Form getLong={getLongitude} getLat={getLatitude} getDate={getDate} date={selectedDate} sunOption={isSunrise} updateSunOption={getSunOption} todaysDate={todaysDate} getSubmit={getFormSubmit} getRun = {getRunTime} run={runTime}/>
       <Results sunInformation={sunData} sunOption={isSunrise} userRunTime={runTime} />
+      <Footer />
     </div>
   );
 }
