@@ -36,7 +36,7 @@ function Loader() {
             </>
         ) : (
             <>
-                <h1></h1>
+                null
             </>
             )}
         </>
