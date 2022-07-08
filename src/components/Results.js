@@ -18,7 +18,7 @@ const Results = (props) => {
     function subtractMinutes(numOfMinutes, date = new Date(sunInformation.sunset)) {
         date.setMinutes(date.getMinutes() - numOfMinutes);
       
-        return date.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit' } );
+        return date.toLocaleString('en-US', {timeStyle: 'short' } );
       }
 
     const whatTimeToLeave = subtractMinutes(userRunTime, sunsetDateObject);

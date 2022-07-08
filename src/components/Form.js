@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import Location from "./Location";
 
 const Form = (props) => {
 
     const { getLong, getLat, getDate, date, sunOption, updateSunOption, todaysDate, getSubmit, getRun, run} = props
+
+
+    const [checked, setChecked] = useState('gps')
 
     const handleChange = (e) => {
 
@@ -49,15 +53,40 @@ const Form = (props) => {
     return (
     
     <>
-        <p>Date</p>
-        <p>location</p>
-        <button onClick={getLocation}>Get my location</button>
+
+        <div>
+          {/* Radio inputs to change the state of 'checked', so the conditional render below will work */}
+          <input
+            type="radio"
+            id='gps'
+            checked={checked === 'gps'}
+            name='gps'
+            value={checked}
+            onChange={(e)=>{setChecked(e.target.name)}}
+          />
+          <label htmlFor="gps">Find me with GPS</label>
+          <input
+            type="radio"
+            id='search'
+            checked={checked === 'search'}
+            name='search'
+            value={checked}
+            onChange={(e)=>{setChecked(e.target.name)}}
+          />
+          <label htmlFor="search">That's creepy, I'd rather search</label>
+        </div>
+
+        {/* Conditionally rendering either the gps button or searchbar by checking the value of 'checked' (state) */}
+        {
+          checked === 'gps'
+          ? ( <button onClick={getLocation}>Get my location</button> )
+          : <Location />  // If the user has not selected 'gps', the Location component will show (the search bar, etc..stored in another component)
+        }
+
         <form onSubmit={handleSubmit}>
           <label htmlFor="date">Select date:</label>
           <input min ={todaysDate} type="date" id="date" name="date" value={date} onChange={handleChange}/>
 
-          
-          
 
           <p>Sunrise or Sunset?</p>
           <div onChange={handleSunChange} value={sunOption}>
