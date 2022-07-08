@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./Loader.css";
 
 function Loader() {
     const [data, setData] = useState([]);

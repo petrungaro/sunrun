@@ -6,6 +6,28 @@ html { box-sizing: border-box;}
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
+/* FONT STYLES */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+h1 {
+    font-size: 4em;
+
+}
+
+form {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: #fff;
+}
+
+button {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+/* BASE STYLES */
+
 html {
     background-image: linear-gradient(to bottom, #b8e070, #c6e676, #d3eb7c, #e1f182, #eef689, #f5ec81, #fae17b, #ffd777, #fbba6a, #f39d63, #e78161, #d66761);
     background-position: center;
@@ -15,6 +37,20 @@ html {
     height: 100%;
     top: 0;
 }
+
+/* LOADER STYLES */
+
+.spinner {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* WATCH STYLES */
 
 .watch {
     display: flex;
@@ -28,7 +64,34 @@ html {
     margin-right: auto;
     position: absolute;
     top: 50%;
-        left: 50%;
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/* FOOTER STYLES */
+
+.juno {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #e3d5d6;
+    background-color: #000;
+    position: fixed;
+    padding: 0px 10px 0px 10px;
+    bottom: 0;
+    width: 100%;
+    height: 35px;
+}
+
+a {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.juno a {
+    color: rgb(177, 104, 177);
+    text-decoration: none;
+    font-weight: bold;
 }
