@@ -48,7 +48,7 @@ const Form = (props) => {
 
     return (
     
-    <>
+    <div className="interface">
         <p>Date</p>
         <p>location</p>
         <button onClick={getLocation}>Get my location</button>
@@ -56,8 +56,6 @@ const Form = (props) => {
           <label htmlFor="date">Select date:</label>
           <input min ={todaysDate} type="date" id="date" name="date" value={date} onChange={handleChange}/>
 
-          
-          
 
           <p>Sunrise or Sunset?</p>
           <div onChange={handleSunChange} value={sunOption}>
@@ -70,8 +68,8 @@ const Form = (props) => {
               {
                 !sunOption?
                 <>
-                <label htmlFor="runTime">Length of Run</label>
-                <input onChange={handleRunTime} type="number" name="runTime" min="0"  id="runTime" value={run} step="5"/>
+                  <label htmlFor="runTime">Length of Run</label>
+                  <input onChange={handleRunTime} type="number" name="runTime" min="0"  id="runTime" value={run} step="5"/>
                 </>
                 :null
               }
@@ -79,7 +77,7 @@ const Form = (props) => {
         
         </form>
 
-    </>
+    </div>
 
     
 

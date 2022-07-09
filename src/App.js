@@ -96,7 +96,11 @@ useEffect(()=>{
     <div className="App">
       <Loader />
       <Header />
-      
+          <div class="cloud"></div>
+          <div class="cloud a"></div>
+          <div class="cloud b"></div>
+          <div class="cloud c"></div>
+          
       <h1>Sun Run</h1>
       
       <Form getLong={getLongitude} getLat={getLatitude} getDate={getDate} date={selectedDate} sunOption={isSunrise} updateSunOption={getSunOption} todaysDate={todaysDate} getSubmit={getFormSubmit} getRun = {getRunTime} run={runTime}/>
