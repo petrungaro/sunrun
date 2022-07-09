@@ -58,12 +58,13 @@ const Form = (props) => {
 
 
           <p>Sunrise or Sunset?</p>
-          <div onChange={handleSunChange} value={sunOption}>
+          <div className="sun" onChange={handleSunChange} value={sunOption}>
+              
               <input type="radio" id="sunrise" name="sunOption" value="true"/>
-              <label htmlFor="sunrise">Sunrise</label>
+              <label htmlFor="sunrise"><img className="sunriseImage" src="/sunrise1.svg" alt="sunrise icon"></img></label>
 
               <input type="radio" id="sunset" name="sunOption" value=""/>
-              <label htmlFor="sunset">Sunset</label>
+              <label htmlFor="sunset"><img className="sunsetImage" src="/sunset1.svg" alt="sunset icon"></img></label>
           </div>
               {
                 !sunOption?

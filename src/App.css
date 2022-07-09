@@ -31,8 +31,10 @@ h1 {
 
 button {
     font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
     margin-top: 5px;
     margin-bottom: 10px;
+    background-color: #B8E070;
 }
 
 
@@ -55,16 +57,35 @@ button {
     transform: translate(-50%, -50%);
 }
 
+.sun {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.sunriseImage {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 50%;
+}
+
+.sunsetImage {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 50%;
+}
+
 
 /* FOOTER STYLES */
 
 .juno {
+    font-size: 1em;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #e3d5d6;
-    background-color: #000;
+    color: rgb(30, 30, 30);
+    background-color: #B8E070;
     position: fixed;
     padding: 0px 10px 0px 10px;
     bottom: 0;
@@ -78,7 +99,7 @@ a {
 }
 
 .juno a {
-    color: rgb(177, 104, 177);
+    color: rgb(163, 68, 207);
     text-decoration: none;
     font-weight: bold;
 }
@@ -157,7 +178,7 @@ a {
 /* BACKGROUND ANIMATION STYLES */
 
 html {
-    background-image: linear-gradient(to right, #193560, #D091BC, #94DFFE, #94DFFE, #c99e40, #193560);
+    background-image: linear-gradient(to right, #193560, #D091BC, #94DFFE, #94DFFE, #50add5, #193560);
     background-size: 400% 400%;
     background-attachment: fixed;
     background-repeat: repeat;
