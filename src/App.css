@@ -243,7 +243,7 @@ html {
     }
 
     100% {
-        transform: translateX(1500px);
+        transform: translateX(2000px);
     }
 }
 

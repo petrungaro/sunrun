@@ -96,12 +96,12 @@ useEffect(()=>{
     <div className="App">
       <Loader />
       <Header />
-          <div class="cloud"></div>
-          <div class="cloud a"></div>
-          <div class="cloud b"></div>
-          <div class="cloud c"></div>
+          <div className="cloud"></div>
+          <div className="cloud a"></div>
+          <div className="cloud b"></div>
+          <div className="cloud c"></div>
 
-      <h1 class="animate pop">Sun Run</h1>
+      <h1 className="animate pop">Sun Run</h1>
       
       <Form getLong={getLongitude} getLat={getLatitude} getDate={getDate} date={selectedDate} sunOption={isSunrise} updateSunOption={getSunOption} todaysDate={todaysDate} getSubmit={getFormSubmit} getRun = {getRunTime} run={runTime}/>
       <Results sunInformation={sunData} sunOption={isSunrise} userRunTime={runTime} />
