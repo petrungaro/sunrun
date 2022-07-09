@@ -96,10 +96,12 @@ useEffect(()=>{
     <div className="App">
       <Loader />
       <Header />
+      <div className="clouds">
           <div className="cloud"></div>
           <div className="cloud a"></div>
           <div className="cloud b"></div>
           <div className="cloud c"></div>
+      </div>
 
       <h1 className="animate pop">Sun Run</h1>
       

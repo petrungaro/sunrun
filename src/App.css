@@ -157,13 +157,14 @@ a {
 /* BACKGROUND ANIMATION STYLES */
 
 html {
-    background-image: linear-gradient(to right,#ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-image: linear-gradient(to right, #193560, #D091BC, #94DFFE, #94DFFE, #c99e40, #193560);
     background-size: 400% 400%;
     background-attachment: fixed;
     background-repeat: repeat;
-    animation: gradient 15s ease infinite;
+    animation: gradient 45s ease infinite;
     height: 100vh;
     margin: 0;
+    overflow-x: hidden;
 }
 
 @keyframes gradient {
@@ -183,13 +184,18 @@ html {
 
 /* CLOUD ANIMATION STYLES */
 
+.clouds {
+    position: relative;
+    width: max-content;
+}
+
 .cloud {
     width: 50px;
     height: 45px;
     border-radius: 50%;
     background-color: #fff;
     position: absolute;
-    top: 20px;
+    top: 30px;
     left: -20%;
     animation-name: cloud;
     animation-duration: 100s;
@@ -238,12 +244,12 @@ html {
 }
 
 @keyframes cloud {
-    0% {
-        transform: translateX(0);
+from {
+        left: -150px;
     }
 
-    100% {
-        transform: translateX(2000px);
+    to {
+        left: calc(100vw + 150px);
     }
 }
 
