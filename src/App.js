@@ -93,8 +93,21 @@ useEffect(()=>{
 
   return (
     <div className="App">
+     
+      <Loader />
+      <Header />
+      <div className="clouds">
+          <div className="cloud"></div>
+          <div className="cloud a"></div>
+          <div className="cloud b"></div>
+          <div className="cloud c"></div>
+      </div>
+
+      <h1 className="animate pop">Sun Run</h1>
+      
       <Form getLong={getLongitude} getLat={getLatitude} getDate={getDate} date={selectedDate} sunOption={isSunrise} updateSunOption={getSunOption} todaysDate={todaysDate} getSubmit={getFormSubmit} getRun = {getRunTime} run={runTime} setLatBySearch={setUserLatitude} setLongBySearch={setUserLongitude}/>
       <Results sunInformation={sunData} sunOption={isSunrise} userRunTime={runTime} />
+      <Footer />
     </div>
   );
 }
