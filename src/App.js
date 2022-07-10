@@ -18,7 +18,7 @@ const [userLongitude, setUserLongitude] = useState("");
 const [userLatitude, setUserLatitude] = useState("");
 const [sunData, setSunData] = useState({})
 const [selectedDate, setSelectedDate] = useState("")
-const [isSunrise, setIsSunrise] = useState(true)
+const [isSunrise, setIsSunrise] = useState('sunrise')
 const [todaysDate, setTodaysDate] = useState("");
 // const [isSubmit, setIsSubmit]=useState(true);
 const [runTime, setRunTime]= useState(0);
@@ -54,7 +54,6 @@ const getRunTime=(minutes)=>{
   setRunTime(minutes);
   console.log("Users run is", minutes);
 }
-
 
 
 // useEffect(() => {
@@ -94,6 +93,7 @@ useEffect(()=>{
 
   return (
     <div className="App">
+     
       <Loader />
       <Header />
       <div className="clouds">
@@ -105,7 +105,7 @@ useEffect(()=>{
 
       <h1 className="animate pop">Sun Run</h1>
       
-      <Form getLong={getLongitude} getLat={getLatitude} getDate={getDate} date={selectedDate} sunOption={isSunrise} updateSunOption={getSunOption} todaysDate={todaysDate} getSubmit={getFormSubmit} getRun = {getRunTime} run={runTime}/>
+      <Form getLong={getLongitude} getLat={getLatitude} getDate={getDate} date={selectedDate} sunOption={isSunrise} updateSunOption={getSunOption} todaysDate={todaysDate} getSubmit={getFormSubmit} getRun = {getRunTime} run={runTime} setLatBySearch={setUserLatitude} setLongBySearch={setUserLongitude}/>
       <Results sunInformation={sunData} sunOption={isSunrise} userRunTime={runTime} />
       <Footer />
     </div>
