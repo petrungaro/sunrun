@@ -35,18 +35,18 @@ const Results = (props) => {
     return(
         <>
         {
+          // In an invaliud date will return Nan, check to see if the date statisfies it being not Nan
           !isNaN(sunDateObject)?
-       
-        
-      
-        
-        
+
+          // Check to see if the user has missed sunset/sunrise 
+            today>sunDateObject.getTime()?
+            <p>You missed the {sunOption}</p>
+            :
+
             sunOption === 'sunrise' 
             ?<p>{sunDateObject.toLocaleString()}</p>
             :<p>{`For a ${userRunTime} minute run, leave at ${whatTimeToLeave} to get home before sunset`}</p>
          
-          
-          
             :(userRunTime * 1000 * 60) > diff
             ? <p>You don't have enough time for this run, try another day or a shorter runtime</p>
            
