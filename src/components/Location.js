@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Location = (props) => {
+
+  const { setLatBySearch, setLongBySearch } = props;
 
   // STATE
   const [locData, setLocData] = useState([])
   const [searchTerm, setSearchTerm] = useState('');
   // selectValue can be deleted, right now it's just holding the longitude and latitude, but we'll end up passing those up into App, right now it was just for testing:
-  const [selectValue, setSelectValue] = useState();
+  const [selectValue, setSelectValue] = useState('');
 
   // HANDLERS
   const handleSearchChange = (e) => {
@@ -23,6 +25,18 @@ const Location = (props) => {
     // props.setLatitudeFunctionFromProps(e.target.value[0])
     // props.setLongitudeFunctionFromProps(e.target.value[1])
   }
+
+  useEffect(()=>{
+    const array = selectValue.split(',')
+    // Converting the string in SelectValue to an array, then sending the individual array values up to App as longitude/latitude
+    setLatBySearch(array[0]);
+    setLongBySearch(array[1]);
+  }, [selectValue])
+
+
+  // const array = selectValue.split(',')
+  // console.log(array);
+
 
   // API CALL
 
@@ -56,8 +70,10 @@ const Location = (props) => {
           {[...locData].map((object) => {
             return (
               <option
-                key={object.label}
+                key={object.latitude}
                 // I did some googling to see how to pass 2 values into the 'value' field, and an array was suggested, this seems to work so far but I'm not sure if this is the proper way to do thing:
+
+                // !This is not actually saved as an array, but a string
                 value={[object.latitude, object.longitude]}
                 id={object.label}
               >

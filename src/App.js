@@ -56,7 +56,6 @@ const getRunTime=(minutes)=>{
 }
 
 
-
 // useEffect(() => {
   const getFormSubmit = () =>{
   axios({
@@ -94,7 +93,7 @@ useEffect(()=>{
 
   return (
     <div className="App">
-      <Form getLong={getLongitude} getLat={getLatitude} getDate={getDate} date={selectedDate} sunOption={isSunrise} updateSunOption={getSunOption} todaysDate={todaysDate} getSubmit={getFormSubmit} getRun = {getRunTime} run={runTime}/>
+      <Form getLong={getLongitude} getLat={getLatitude} getDate={getDate} date={selectedDate} sunOption={isSunrise} updateSunOption={getSunOption} todaysDate={todaysDate} getSubmit={getFormSubmit} getRun = {getRunTime} run={runTime} setLatBySearch={setUserLatitude} setLongBySearch={setUserLongitude}/>
       <Results sunInformation={sunData} sunOption={isSunrise} userRunTime={runTime} />
     </div>
   );

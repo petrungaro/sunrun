@@ -3,7 +3,7 @@ import Location from "./Location";
 
 const Form = (props) => {
 
-    const { getLong, getLat, getDate, date, sunOption, updateSunOption, todaysDate, getSubmit, getRun, run} = props
+    const { getLong, getLat, getDate, date, sunOption, updateSunOption, todaysDate, getSubmit, getRun, run, setLatBySearch, setLongBySearch} = props
 
 
     const [checked, setChecked] = useState('gps')
@@ -80,7 +80,7 @@ const Form = (props) => {
         {
           checked === 'gps'
           ? ( <button onClick={getLocation}>Get my location</button> )
-          : <Location />  // If the user has not selected 'gps', the Location component will show (the search bar, etc..stored in another component)
+          : <Location setLatBySearch={setLatBySearch} setLongBySearch={setLongBySearch} />  // If the user has not selected 'gps', the Location component will show (the search bar, etc..stored in another component)
         }
 
         <form onSubmit={handleSubmit}>
