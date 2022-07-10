@@ -75,6 +75,11 @@ button {
     width: 50%;
 }
 
+.sunriseImage:hover, 
+.sunsetImage:hover {
+    margin-top: -10px;
+}
+
 
 /* FOOTER STYLES */
 
