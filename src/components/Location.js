@@ -31,7 +31,9 @@ const Location = (props) => {
     // Converting the string in SelectValue to an array, then sending the individual array values up to App as longitude/latitude
     setLatBySearch(array[0]);
     setLongBySearch(array[1]);
-  }, [selectValue])
+  }, [selectValue, setLatBySearch, setLongBySearch])
+
+  // TODO: Ask why setLatBySearch and setLongBySearch need to be included in the dependancy array ? 
 
 
   // const array = selectValue.split(',')
