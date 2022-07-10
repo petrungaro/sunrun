@@ -34,16 +34,27 @@ const Results = (props) => {
 
     return(
         <>
-          {
-            sunOption === 'sunrise'
+        {
+          !isNaN(sunDateObject)?
+       
+        
+      
+        
+        
+            sunOption === 'sunrise' 
             ?<p>{sunDateObject.toLocaleString()}</p>
             :<p>{`For a ${userRunTime} minute run, leave at ${whatTimeToLeave} to get home before sunset`}</p>
-          }
-          {
-            (userRunTime * 1000 * 60) > diff
+         
+          
+          
+            :(userRunTime * 1000 * 60) > diff
             ? <p>You don't have enough time for this run, try another day or a shorter runtime</p>
-            : null
-          }
+           
+          
+       :null
+       }
+       
+        
         </>
     )
 }
