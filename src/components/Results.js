@@ -13,7 +13,14 @@ const Results = (props) => {
 
     // A variable to track the difference between sunset time and current time
     const today = Date.now(); 
+    let sunTime = sunDateObject.getTime();
+
+
     const diff = sunDateObject.getTime() - today;
+
+    console.log("Right now time", today);
+    console.log("sun time", sunDateObject.getTime());
+
 
 
 
@@ -22,37 +29,86 @@ const Results = (props) => {
     // console.log(hours,minutes);
 
 
-    function subtractMinutes(numOfMinutes, date = new Date(sunDateObject)) {
+    function subtractMinutes(numOfMinutes, date = new Date(...sunDateObject)) {
+
+      if(sunOption==='sunset'){
         date.setMinutes(date.getMinutes() - numOfMinutes);
       
         return date.toLocaleString('en-US', {timeStyle: 'short' } );
       }
-
+    }
+      
     const whatTimeToLeave = subtractMinutes(userRunTime, sunDateObject);
     console.log(whatTimeToLeave);
-
+      
 
     return(
         <>
         {
-          // In an invaliud date will return Nan, check to see if the date statisfies it being not Nan
-          !isNaN(sunDateObject)?
-
-          // Check to see if the user has missed sunset/sunrise 
-            today>sunDateObject.getTime()?
-            <p>You missed the {sunOption}</p>
-            :
-
-            sunOption === 'sunrise' 
-            ?<p>{sunDateObject.toLocaleString()}</p>
-            :<p>{`For a ${userRunTime} minute run, leave at ${whatTimeToLeave} to get home before sunset`}</p>
-         
-            :(userRunTime * 1000 * 60) > diff
-            ? <p>You don't have enough time for this run, try another day or a shorter runtime</p>
            
+          //  Check for valid date, sunrise hasnt past
+            !isNaN(sunDateObject) &&  today<sunTime && sunOption === 'sunrise'?
+            <p>{sunDateObject.toLocaleString()}</p>
+
+            :!isNaN(sunDateObject)&&today>sunTime && sunOption?
+            <p>You missed the {sunOption}</p>
+
+            
+        
+          // check for valid date, sunset hasnt past, enough time for run
+            :!isNaN(sunDateObject) && today<sunTime && sunOption === 'sunset' && (userRunTime * 1000 * 60) < diff?
+            <p>{`For a ${userRunTime} minute run, leave at ${whatTimeToLeave} to get home before sunset`}</p>
+  
+
           
-       :null
-       }
+
+          // sunset checks, but add check if entered run time is possible against sunset and current time
+            :!isNaN(sunDateObject) && sunOption === 'sunset' && (userRunTime*1000*60)>diff ?
+            <p>You don't have enough time for this run, try another day or a shorter runtime</p>
+    
+            // Final check: do nothing 
+           :null
+        
+
+}
+
+
+
+
+
+
+
+        
+
+
+
+
+           
+      
+           
+
+          
+
+
+
+  
+  
+   
+            
+            
+            
+              
+   
+          
+
+       
+          
+
+
+
+      
+        
+ 
        
         
         </>
