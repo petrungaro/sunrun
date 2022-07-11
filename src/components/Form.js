@@ -5,103 +5,93 @@ const Form = (props) => {
 
     const { getLong, getLat, getDate, date, sunOption, updateSunOption, todaysDate, getSubmit, getRun, run, setLatBySearch, setLongBySearch} = props
 
+    const [checked, setChecked] = useState('')
 
-    const [checked, setChecked] = useState('gps')
-
-    const handleChange = (e) => {
-
-        console.log(e)
-        getDate(e.target.value)
-    }
-
-    const handleSunChange = (e) => {
-
-        // console.log(e.target.value)
-        updateSunOption(e.target.value)
-    }
-
+    const handleChange = (e) => getDate(e.target.value);
+    
+    const handleSunChange = (e) => updateSunOption(e.target.value);
+    
     // GEOLOCATION:
-    // Get geolocation:
-    const getLocation = () => {
-      navigator.geolocation.getCurrentPosition(locationSuccess, locationFailure)
-    }
+    const getLocation = () => navigator.geolocation.getCurrentPosition(locationSuccess, locationFailure);
+  
 
-    // What to do with successfull geolocation:
+    // function for successful geolocation:
     const locationSuccess = (position) => {
       getLong(position.coords.longitude);
       getLat(position.coords.latitude);
-      console.log('success! long/lat saved')
-      console.log(position.coords)
-    }
+    };
 
-    const locationFailure = () => {
-      console.log('user declined to share location')
-    }
+    // function for unsuccessful geolocation:
+    const locationFailure = () => alert("We were unable to find your location, please search for your city");
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = (e) => {
       e.preventDefault();
-      console.log('Form submit',e);
-      getSubmit();
 
-    }
+      if (checked && sunOption) {
+        getSubmit()
+      }
+      else if (checked && !sunOption){
+        alert("Please choose either sunrise or sunset")
+      }
+      else if (!checked && sunOption) {
+        alert("Please enter your location via GPS or search")
+      }
+      else if (!checked && !sunOption){
+        alert("Please make sure you have selected a location and sunrise or sunset option")
+      }
+    };
 
-    const handleRunTime = (e)=>{
-      console.log("Run time", e);
-      getRun(e.target.value);
-    }
+    const handleRunTime = (e) => getRun(e.target.value);
 
     return (
     
     <>
+      <section className="interface">
+          <p>location</p>
+          <div>
+            <input className="sr-only"
+              type="radio"
+              id='gps'
+              checked={checked === 'gps'}
+              name='gps'
+              value={checked}
+              onChange={(e)=>{setChecked(e.target.name)}}
+            />
+            <label htmlFor="gps">📍Use GPS</label>
 
-        
-
-    <div className="interface">
-        <p>Date</p>
-        <p>location</p>
-        <div>
-          {/* Radio inputs to change the state of 'checked', so the conditional render below will work */}
-          <input
-            type="radio"
-            id='gps'
-            checked={checked === 'gps'}
-            name='gps'
-            value={checked}
-            onChange={(e)=>{setChecked(e.target.name)}}
-          />
-          <label htmlFor="gps">Find me with GPS</label>
-          <input
-            type="radio"
-            id='search'
-            checked={checked === 'search'}
-            name='search'
-            value={checked}
-            onChange={(e)=>{setChecked(e.target.name)}}
-          />
-          <label htmlFor="search">That's creepy, I'd rather search</label>
-        </div>
+            <input className="sr-only"
+              type="radio"
+              id='search'
+              checked={checked === 'search'}
+              name='search'
+              value={checked}
+              onChange={(e)=>{setChecked(e.target.name)}}
+            />
+            <label htmlFor="search">🔍 Search</label>
+          </div>
 
         {/* Conditionally rendering either the gps button or searchbar by checking the value of 'checked' (state) */}
         {
           checked === 'gps'
           ? ( <button onClick={getLocation}>Get my location</button> )
-          : <Location setLatBySearch={setLatBySearch} setLongBySearch={setLongBySearch} />  // If the user has not selected 'gps', the Location component will show (the search bar, etc..stored in another component)
+          : <Location setLatBySearch={setLatBySearch} setLongBySearch={setLongBySearch} /> 
         }
         
         <form onSubmit={handleSubmit}>
           <label htmlFor="date">Select date:</label>
-          <input min ={todaysDate} type="date" id="date" name="date" value={date} onChange={handleChange}/>
-
+          <input min ={todaysDate} type="date" id="date" name="date" value={date} onChange={handleChange} />
 
           <p>Sunrise or Sunset?</p>
+
           <div className="sun" onChange={handleSunChange} value={sunOption}>
               
-              <input type="radio" id="sunrise" name="sunOption" value="sunrise"/>
+              <input className="sr-only" type="radio" id="sunrise" name="sunOption" value="sunrise"/>
               <label htmlFor="sunrise"><img className="sunriseImage" src="/sunrise1.svg" alt="sunrise icon"></img></label>
 
-              <input type="radio" id="sunset" name="sunOption" value="sunset"/>
+              <input className="sr-only" type="radio" id="sunset" name="sunOption" value="sunset"/>
               <label htmlFor="sunset"><img className="sunsetImage" src="/sunset1.svg" alt="sunset icon"></img></label>
           </div>
+
               {
                 sunOption === 'sunset' 
                 ?<>
@@ -110,18 +100,12 @@ const Form = (props) => {
                 </>
                 :null
               }
-              <button>Get a run time</button>
 
-              
-        
+          <button>Get a run time</button>
         </form>
-
-    </div>
-
+    </section>
   </>
-
-    )
-
+  )
 }
 
 export default Form;

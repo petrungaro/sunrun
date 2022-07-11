@@ -7,57 +7,33 @@ import Footer from './components/Footer';
 import Form from './components/Form';
 import Results from './components/Results';
 import Loader from './components/Loader';
-
-
+import Animations from './Animations';
 import './App.css';
 
 function App() {
 
-  // state
+// STATE
 const [userLongitude, setUserLongitude] = useState("");
 const [userLatitude, setUserLatitude] = useState("");
 const [sunData, setSunData] = useState({})
 const [selectedDate, setSelectedDate] = useState("")
-const [isSunrise, setIsSunrise] = useState('sunrise')
+const [isSunrise, setIsSunrise] = useState('')
 const [todaysDate, setTodaysDate] = useState("");
-// const [isSubmit, setIsSubmit]=useState(true);
 const [runTime, setRunTime]= useState(0);
 
 
-// functions
+// FUNCTIONS
+const getLongitude = (long) => setUserLongitude(long)
 
-const getLongitude = (long) => {
+const getLatitude = (lat) => setUserLatitude(lat)
 
-  setUserLongitude(long)
+const getDate = (date) => setSelectedDate(date)
 
-} 
+const getSunOption = (option) => setIsSunrise(option)
 
-const getLatitude = (lat) => {
-
-  setUserLatitude(lat)
-}
-
-const getDate = (date) => {
-
-  setSelectedDate(date)
-
-}
-
-const getSunOption = (option) => {
-
-  setIsSunrise(option)
-
-
-}
-
-const getRunTime=(minutes)=>{
-  setRunTime(minutes);
-  console.log("Users run is", minutes);
-}
-
-
-// useEffect(() => {
-  const getFormSubmit = () =>{
+const getRunTime=(minutes)=> setRunTime(minutes);
+  
+const getFormSubmit = () =>{
   axios({
     url: `https://api.sunrise-sunset.org/json`,
     method: `GET`,
@@ -76,39 +52,39 @@ const getRunTime=(minutes)=>{
     
   })
   }
-// }, [isSubmit] );
+
 
 useEffect(()=>{
   let date = new Date();
-  // Format date to YYYY-MM-DD
   let formatDate = date.toLocaleDateString();
   setTodaysDate(formatDate);
 
 },[])
 
-// const getFormSubmit = ()=>{
-//   setIsSubmit(!isSubmit)
-// }
 
 
   return (
-    <div className="App">
-     
+    <main>
       <Loader />
       <Header />
-      <div className="clouds">
-          <div className="cloud"></div>
-          <div className="cloud a"></div>
-          <div className="cloud b"></div>
-          <div className="cloud c"></div>
-      </div>
-
-      <h1 className="animate pop">Sun Run</h1>
-      
-      <Form getLong={getLongitude} getLat={getLatitude} getDate={getDate} date={selectedDate} sunOption={isSunrise} updateSunOption={getSunOption} todaysDate={todaysDate} getSubmit={getFormSubmit} getRun = {getRunTime} run={runTime} setLatBySearch={setUserLatitude} setLongBySearch={setUserLongitude}/>
+      <Animations />    
+      <Form 
+        getLong={getLongitude} 
+        getLat={getLatitude} 
+        getDate={getDate} 
+        date={selectedDate} 
+        sunOption={isSunrise} 
+        updateSunOption={getSunOption} 
+        todaysDate={todaysDate} 
+        getSubmit={getFormSubmit} 
+        getRun = {getRunTime} 
+        run={runTime} 
+        setLatBySearch={setUserLatitude} 
+        setLongBySearch={setUserLongitude}
+      />
       <Results sunInformation={sunData} sunOption={isSunrise} userRunTime={runTime} />
       <Footer />
-    </div>
+    </main>
   );
 }
 

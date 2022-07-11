@@ -6,44 +6,25 @@ const Location = (props) => {
   const { setLatBySearch, setLongBySearch } = props;
 
   // STATE
-  const [locData, setLocData] = useState([])
+  const [locData, setLocData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  // selectValue can be deleted, right now it's just holding the longitude and latitude, but we'll end up passing those up into App, right now it was just for testing:
   const [selectValue, setSelectValue] = useState('');
 
   // HANDLERS
-  const handleSearchChange = (e) => {
-    console.log(e.target.value);
-    setSearchTerm(e.target.value)
-  }
+  const handleSearchChange = (e) => setSearchTerm(e.target.value);
 
-  const handleSelectChange = (e) => {
-    console.log(e.target.value);
-    setSelectValue(e.target.value);
-    //  Right now, the long/lat are being saved as an array in state, but if this works we can send them up to App individually:
+  const handleSelectChange = (e) => setSelectValue(e.target.value);
 
-    // props.setLatitudeFunctionFromProps(e.target.value[0])
-    // props.setLongitudeFunctionFromProps(e.target.value[1])
-  }
 
   useEffect(()=>{
-    const array = selectValue.split(',')
     // Converting the string in SelectValue to an array, then sending the individual array values up to App as longitude/latitude
+    const array = selectValue.split(',')
     setLatBySearch(array[0]);
     setLongBySearch(array[1]);
   }, [selectValue, setLatBySearch, setLongBySearch])
 
-  // TODO: Ask why setLatBySearch and setLongBySearch need to be included in the dependancy array ? 
 
-
-  // const array = selectValue.split(',')
-  // console.log(array);
-
-
-  // API CALL
-
-
-  // API call just needs a search term and the acccess key, search term is grabbed from the input field. The API returns an array of objects, each object is a city that matches the search term (the whole array is put into state, and then it will be mapped over and each city will end up in a dropdown menu)
+  // API call to retrieve array of matched cities, containing each cities longitude and latitude 
   const makeLocationCall = (e) => {
     e.preventDefault();
     axios({
@@ -57,15 +38,13 @@ const Location = (props) => {
     })
   }
 
-
-
-  
   return (
-    <form action="">
+    <form onSubmit={makeLocationCall}>
       <input type="text" onChange={handleSearchChange} value={searchTerm} placeholder='search by city, postal code' required/>
 
       {/* Line 52 - ternary to hide the dropdown menu if the API array has nothing in it  */}
-      {locData.length > 0 
+      {
+      locData.length > 0 
       ? (
         <select name="" id="" onChange={handleSelectChange} value={selectValue}>
           <option value="">Please Select</option>
@@ -84,9 +63,10 @@ const Location = (props) => {
             );
           })}
         </select>
-      ) 
-      : null}
-      <button onClick={makeLocationCall}>Search</button>
+        ) 
+      : null
+      }
+      <button>Search</button>
     </form>
   );
 };
