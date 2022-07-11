@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 const Results = (props) => {
 
     const {sunInformation, sunOption, userRunTime } = props
@@ -21,7 +22,15 @@ const Results = (props) => {
     console.log("Right now time", today);
     console.log("sun time", sunDateObject.getTime());
 
+  // calculate time over
+ 
+  let overTime=[(today-sunTime)/1000/60,'minutes'];
+  if(overTime[0]>60)
+  {
 
+    overTime=[(today-sunTime)/1000/60/60,'hours'];
+  }
+  
 
 
     // let hours = sunsetDateObject.getHours();
@@ -40,18 +49,27 @@ const Results = (props) => {
       
     const whatTimeToLeave = subtractMinutes(userRunTime, sunDateObject);
     console.log(whatTimeToLeave);
-      
+  
+
+
+
+ 
 
     return(
         <>
-        {
+       
+        { 
            
           //  Check for valid date, sunrise hasnt past
             !isNaN(sunDateObject) &&  today<sunTime && sunOption === 'sunrise'?
             <p>{sunDateObject.toLocaleString()}</p>
 
-            :!isNaN(sunDateObject)&&today>sunTime && sunOption?
-            <p>You missed the {sunOption}</p>
+            :!isNaN(sunDateObject)&&today>sunTime && sunOption && today>sunTime?
+           <p>You missed the {sunOption} by {overTime[0]} {overTime[1]}</p>
+
+            // :!isNaN(sunDateObject)&&today>sunTime && sunOption && (today-sunTime)/1000/60>60?
+            // <p>You missed the {sunOption} by {(today-sunTime)/1000/60/60} hours</p>
+
 
             
         
@@ -71,46 +89,6 @@ const Results = (props) => {
         
 
 }
-
-
-
-
-
-
-
-        
-
-
-
-
-           
-      
-           
-
-          
-
-
-
-  
-  
-   
-            
-            
-            
-              
-   
-          
-
-       
-          
-
-
-
-      
-        
- 
-       
-        
         </>
     )
 }
