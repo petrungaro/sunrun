@@ -3,11 +3,11 @@ import axios from 'axios';
 
 // COMPONENT IMPORTS //
 import Header from './components/Header';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 import Form from './components/Form';
 import Results from './components/Results';
 import Loader from './components/Loader';
-import Animations from './Animations';
+import Animations from './components/Animations';
 import Sun from './components/Sun';
 import Card from './components/Card';
 import './App.css';
@@ -68,9 +68,8 @@ useEffect(()=>{
   return (
     <>
 
-      <div className="wrapper">
         <Loader />
-        {/* <Header /> */}
+      <div className="wrapper">
         <Animations />
         <main>
           <div className="left">
@@ -101,7 +100,7 @@ useEffect(()=>{
           </div>
         </main>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

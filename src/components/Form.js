@@ -82,14 +82,14 @@ const Form = (props) => {
 
           <label>Run at sunrise or before sunset?</label>
 
-          <div className="sun" onChange={handleSunChange} value={sunOption}>
+          <fieldset className="sun" onChange={handleSunChange} value={sunOption}>
             
               <input className="sr-only" type="radio" id="sunrise" name="sunOption" value="sunrise"/>
               <label htmlFor="sunrise"><img className="sunriseImage" src="/sunrise1.svg" alt="sunrise icon"></img></label>
 
               <input className="sr-only" type="radio" id="sunset" name="sunOption" value="sunset"/>
               <label htmlFor="sunset"><img className="sunsetImage" src="/sunset1.svg" alt="sunset icon"></img></label>
-          </div>
+          </fieldset>
 
               {
                 sunOption === 'sunset' 

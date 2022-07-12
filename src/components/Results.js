@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 const Results = (props) => {
 
     const {sunInformation, sunOption, userRunTime, selectedDate} = props
