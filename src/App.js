@@ -8,7 +8,7 @@ import Form from './components/Form';
 import Results from './components/Results';
 import Loader from './components/Loader';
 import Animations from './Animations';
-import Watch from './components/Watch';
+import Sun from './components/Sun';
 import Card from './components/Card';
 import './App.css';
 
@@ -67,34 +67,40 @@ useEffect(()=>{
 
   return (
     <>
-      <Loader />
-      <Header />
-      <Animations />    
-      <main>
-        <div className="left">
-          <Card>
-            <Form
-              getLong={getLongitude}
-              getLat={getLatitude}
-              getDate={getDate}
-              date={selectedDate}
-              sunOption={isSunrise}
-              updateSunOption={getSunOption}
-              todaysDate={todaysDate}
-              getSubmit={getFormSubmit}
-              getRun = {getRunTime}
-              run={runTime}
-              setLatBySearch={setUserLatitude}
-              setLongBySearch={setUserLongitude}
-              userLatitude={userLatitude}
-              userLongitude={userLongitude}
-            />
-          </Card>
-        </div>
-        <Watch>
-          <Results sunInformation={sunData} sunOption={isSunrise} userRunTime={runTime} />
-        </Watch>
-      </main>
+
+      <div className="wrapper">
+        <Loader />
+        {/* <Header /> */}
+        <Animations />
+        <main>
+          <div className="left">
+            <Card>
+              <Form
+                getLong={getLongitude}
+                getLat={getLatitude}
+                getDate={getDate}
+                date={selectedDate}
+                sunOption={isSunrise}
+                updateSunOption={getSunOption}
+                todaysDate={todaysDate}
+                getSubmit={getFormSubmit}
+                getRun = {getRunTime}
+                run={runTime}
+                setLatBySearch={setUserLatitude}
+                setLongBySearch={setUserLongitude}
+                userLatitude={userLatitude}
+                userLongitude={userLongitude}
+              />
+            </Card>
+          </div>
+          <div className="right">
+            <Header />
+            <Sun>
+              <Results sunInformation={sunData} sunOption={isSunrise} userRunTime={runTime} />
+            </Sun>
+          </div>
+        </main>
+      </div>
       <Footer />
     </>
   );
