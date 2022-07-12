@@ -34,7 +34,7 @@ const Results = (props) => {
   
     return(
 
-        <>
+        <div className="results">
 
           { 
             
@@ -53,10 +53,10 @@ const Results = (props) => {
               <p>You don't have enough time for this run, try another day or a shorter runtime</p>
       
             // Final check: do nothing 
-            :null
+            : null
       
           }
-        </>
+        </div>
     )
 }
 

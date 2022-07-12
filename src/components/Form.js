@@ -3,7 +3,7 @@ import Location from "./Location";
 
 const Form = (props) => {
 
-    const { getLong, getLat, getDate, date, sunOption, updateSunOption, todaysDate, getSubmit, getRun, run, setLatBySearch, setLongBySearch} = props
+    const { getLong, getLat, getDate, date, sunOption, updateSunOption, todaysDate, getSubmit, getRun, run, setLatBySearch, setLongBySearch, userLatitude} = props
 
     const [checked, setChecked] = useState('')
 
@@ -47,8 +47,7 @@ const Form = (props) => {
     
     <>
       <section className="interface">
-          <p>location</p>
-          <div>
+          <div className='locationChoices'>
             <input className="sr-only"
               type="radio"
               id='gps'
@@ -73,18 +72,18 @@ const Form = (props) => {
         {/* Conditionally rendering either the gps button or searchbar by checking the value of 'checked' (state) */}
         {
           checked === 'gps'
-          ? ( <button onClick={getLocation}>Get my location</button> )
+          ? ( <button onClick={getLocation}>Get my location {userLatitude ? '👍' : null }</button> )
           : <Location setLatBySearch={setLatBySearch} setLongBySearch={setLongBySearch} /> 
         }
         
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="date">Select date:</label>
+        <form className='dateSunForm' onSubmit={handleSubmit}>
+          <label htmlFor="date">📆 Select a date:</label>
           <input min ={todaysDate} type="date" id="date" name="date" value={date} onChange={handleChange} />
 
-          <p>Sunrise or Sunset?</p>
+          <label>Run at sunrise or before sunset?</label>
 
           <div className="sun" onChange={handleSunChange} value={sunOption}>
-              
+            
               <input className="sr-only" type="radio" id="sunrise" name="sunOption" value="sunrise"/>
               <label htmlFor="sunrise"><img className="sunriseImage" src="/sunrise1.svg" alt="sunrise icon"></img></label>
 

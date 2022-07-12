@@ -39,9 +39,9 @@ const Location = (props) => {
   }
 
   return (
-    <form onSubmit={makeLocationCall}>
+    <form className='locationForm' onSubmit={makeLocationCall}>
       <input type="text" onChange={handleSearchChange} value={searchTerm} placeholder='search by city, postal code' required/>
-
+      <button>Search</button>
       {/* Line 52 - ternary to hide the dropdown menu if the API array has nothing in it  */}
       {
       locData.length > 0 
@@ -66,7 +66,7 @@ const Location = (props) => {
         ) 
       : null
       }
-      <button>Search</button>
+      
     </form>
   );
 };
