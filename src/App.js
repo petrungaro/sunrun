@@ -8,6 +8,8 @@ import Form from './components/Form';
 import Results from './components/Results';
 import Loader from './components/Loader';
 import Animations from './Animations';
+import Watch from './components/Watch';
+import Card from './components/Card';
 import './App.css';
 
 function App() {
@@ -64,27 +66,37 @@ useEffect(()=>{
 
 
   return (
-    <main>
+    <>
       <Loader />
       <Header />
       <Animations />    
-      <Form 
-        getLong={getLongitude} 
-        getLat={getLatitude} 
-        getDate={getDate} 
-        date={selectedDate} 
-        sunOption={isSunrise} 
-        updateSunOption={getSunOption} 
-        todaysDate={todaysDate} 
-        getSubmit={getFormSubmit} 
-        getRun = {getRunTime} 
-        run={runTime} 
-        setLatBySearch={setUserLatitude} 
-        setLongBySearch={setUserLongitude}
-      />
-      <Results sunInformation={sunData} sunOption={isSunrise} userRunTime={runTime} />
+      <main>
+        <div className="left">
+          <Card>
+            <Form
+              getLong={getLongitude}
+              getLat={getLatitude}
+              getDate={getDate}
+              date={selectedDate}
+              sunOption={isSunrise}
+              updateSunOption={getSunOption}
+              todaysDate={todaysDate}
+              getSubmit={getFormSubmit}
+              getRun = {getRunTime}
+              run={runTime}
+              setLatBySearch={setUserLatitude}
+              setLongBySearch={setUserLongitude}
+              userLatitude={userLatitude}
+              userLongitude={userLongitude}
+            />
+          </Card>
+        </div>
+        <Watch>
+          <Results sunInformation={sunData} sunOption={isSunrise} userRunTime={runTime} />
+        </Watch>
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }
 
