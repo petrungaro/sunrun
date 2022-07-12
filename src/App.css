@@ -446,7 +446,9 @@ select {
     background-size: contain;
     min-width: 40%; */
 
-    background: #3D3D3D;
+    /* background: #3D3D3D; */
+    background: url(../public/band.svg) no-repeat center center;
+    background-size: cover;
     width: 40%;
 
     color: white;
