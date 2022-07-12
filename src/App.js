@@ -3,7 +3,6 @@ import axios from 'axios';
 
 // COMPONENT IMPORTS //
 import Header from './components/Header';
-// import Footer from './components/Footer';
 import Form from './components/Form';
 import Results from './components/Results';
 import Loader from './components/Loader';
@@ -68,7 +67,7 @@ useEffect(()=>{
   return (
     <>
 
-        <Loader />
+      <Loader />
       <div className="wrapper">
         <Animations />
         <main>
@@ -100,7 +99,6 @@ useEffect(()=>{
           </div>
         </main>
       </div>
-      {/* <Footer /> */}
     </>
   );
 }

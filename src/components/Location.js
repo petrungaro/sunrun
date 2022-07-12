@@ -52,9 +52,7 @@ const Location = (props) => {
             return (
               <option
                 key={object.latitude}
-                // I did some googling to see how to pass 2 values into the 'value' field, and an array was suggested, this seems to work so far but I'm not sure if this is the proper way to do thing:
-
-                // !This is not actually saved as an array, but a string
+// ! look into how this is converting into a string
                 value={[object.latitude, object.longitude]}
                 id={object.label}
               >

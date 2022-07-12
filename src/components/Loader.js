@@ -10,10 +10,8 @@ function Loader() {
             fetch("https://jsonplaceholder.typicode.com/posts")
                 .then((response) => response.json())
                 .then((json) => {
-                    console.log(json);
                     setData(json);
                     setloading(true);
-
                     setTimeout(() => {
                         setcompleted(true);
                     }, 3000);
