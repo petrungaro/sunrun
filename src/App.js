@@ -96,7 +96,7 @@ useEffect(()=>{
           <div className="right">
             <Header />
             <Sun>
-              <Results sunInformation={sunData} sunOption={isSunrise} userRunTime={runTime} />
+              <Results sunInformation={sunData} sunOption={isSunrise} userRunTime={runTime} selectedDate={selectedDate} />
             </Sun>
           </div>
         </main>

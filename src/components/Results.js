@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 const Results = (props) => {
 
-    const {sunInformation, sunOption, userRunTime } = props
+    const {sunInformation, sunOption, userRunTime, selectedDate} = props
 
     const sunDateObject = new Date(sunInformation[sunOption]);
 
@@ -11,6 +11,8 @@ const Results = (props) => {
     let sunTime = sunDateObject.getTime();
 
     const diff = sunDateObject.getTime() - today;
+
+    const displayDate = new Date(selectedDate.replaceAll(`-`, `/`)).toLocaleString('en-US', {month: "short", day:"numeric"})
 
   // to calculate how many minutes user missed sunset 
  
@@ -40,13 +42,13 @@ const Results = (props) => {
             
             //  Check for valid date and confirm sunrise hasn't past
               !isNaN(sunDateObject) &&  today<sunTime && sunOption === 'sunrise'?
-              <p>{sunDateObject.toLocaleString()}</p>
+              <p>Sunrise on {displayDate} will be: <span className="displayDate">{sunDateObject.toLocaleString('en-US', {timeStyle: 'short' } )}</span></p>
               :!isNaN(sunDateObject)&&today>sunTime && sunOption && today>sunTime?
-              <p>You missed the {sunOption} by {overTime[0]} {overTime[1]}</p>
+              <p>You missed the {sunOption} by {overTime[0].toFixed(1)} {overTime[1]}</p>
 
             // check for valid date, confirm sunset hasnt past and user has enough time for run
               :!isNaN(sunDateObject) && today<sunTime && sunOption === 'sunset' && (userRunTime * 1000 * 60) < diff?
-              <p>{`For a ${userRunTime} minute run, leave at ${whatTimeToLeave} to get home before sunset`}</p>
+              <p>For a {userRunTime} minute run, leave at <span className="displayDate">{whatTimeToLeave}</span> to get home before sunset</p>
     
             // check if the user's run time is enough time to return before sunset
               :!isNaN(sunDateObject) && sunOption === 'sunset' && (userRunTime*1000*60)>diff ?
