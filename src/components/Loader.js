@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function Loader() {
+function Loader(props) {
     // const [data, setData] = useState([]);
     const [loading, setLoading] = useState(undefined);
     const [completed, setCompleted] = useState(undefined);
@@ -31,6 +31,7 @@ function Loader() {
             setTimeout(()=>{
                 setCompleted(true);
             }, 3000)
+            props.getApp();
         }, 4000)
         
         
