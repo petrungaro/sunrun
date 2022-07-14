@@ -593,10 +593,6 @@ from {
         height: 40vw;
     }
 
-    /* ! this does not seem to be effecting the footer at all */
-    /* .footerCloud{
-        bottom:0;
-    } */
 }
 @media (max-width: 660px){
     h1{
