@@ -52,8 +52,6 @@ const Location = (props) => {
             return (
               <option
                 key={object.latitude}
-// ! look into how this is converting into a string (Done - creating an actual string for value instead of an array that magically turns into a string)
-                // value={[object.latitude, object.longitude]}
                 value={`${object.latitude}, ${object.longitude}`}
                 id={object.label}
               >
